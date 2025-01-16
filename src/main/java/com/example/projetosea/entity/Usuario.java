@@ -33,4 +33,7 @@ public class Usuario {
     private void atualizarStatusPerfil() {
         this.perfilPreenchido = this.informacoes != null;
     }
+
+    public void setIsAdm(boolean b) {
+    }
 }
