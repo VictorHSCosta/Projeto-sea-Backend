@@ -20,10 +20,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/usuarios").permitAll() // Permitir apenas POST em /usuarios
-                .antMatchers(HttpMethod.GET, "/usuarios").hasAuthority("ADMIN") // GET em /usuarios apenas para ADMIN
-                .antMatchers(HttpMethod.GET, "/usuarios/**").authenticated() // GET por ID requer autenticação
-                .antMatchers("/auth/**").permitAll() // Permitir rotas de autenticação
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/usuarios").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/usuarios/**").authenticated()
+                .antMatchers(HttpMethod.GET, "/usuarios/**").authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
